@@ -106,6 +106,10 @@ if(length(categorical_features) > 0){
     df <- df_encoded
 }
 
+# Remove constant columns
+constant_columns <- which(apply(df, 2, var) == 0)
+df <- df[,-constant_columns]
+
 # Standard Scaling
 scaling_values <- list()
 for (feature in numeric_features) {
