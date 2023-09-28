@@ -108,7 +108,9 @@ if(length(categorical_features) > 0){
 
 # Remove constant columns
 constant_columns <- which(apply(df, 2, var) == 0)
-df <- df[,-constant_columns]
+if (length(constant_columns) > 0) {
+    df <- df[,-constant_columns]
+} 
 
 # Standard Scaling
 scaling_values <- list()
